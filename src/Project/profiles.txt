@@ -4,3 +4,4 @@
 4,Tony Stark,4 katugastota kandy,1236547890
 5,Luke Skywalker,5 katugastota kandy,1236547890
 6,kLuke Skywalker,5 katugastota kandy,1236547890
+7,saman kumara,221 bakcer street london,3242353534

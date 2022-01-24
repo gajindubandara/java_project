@@ -99,48 +99,32 @@ public class Main {
     }
 
     private static boolean addProfile() {
+        String Name,Address,Pno,No;
         Scanner sc=new Scanner(System.in);
-        int No=0;
-        String Name="";
-        String Address="";
-        String Address1="";
-        String Address2="";
-        int Pno=0;
+
         try {
             System.out.println("Enter Account Number:");
-            No=sc.nextInt();
-
+            No=sc.nextLine();
             System.out.println("Enter Name: (Firstname & Secondname)");
-            Name=sc.next();
-            Name+=sc.nextLine();
-
+            Name=sc.nextLine();
             System.out.println("Enter Phone Number:");
-            Pno=sc.nextInt();
-
-
+            Pno=sc.nextLine();
             System.out.println("Enter Address: ");
-            System.out.println("No:");
-            System.out.println("Street:");
-            System.out.println("city:");
-            Address=sc.next();
-            Address1=sc.next();
-            Address2=sc.next();
+            Address=sc.nextLine();
 
 
         }catch(InputMismatchException e) {
-            System.err.println("Invlaid data entry");
+            System.err.println("Invalid data entry");
             return false;
         }
 
         try {
-            FileWriter writer=new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt",true);
-            writer.write(No+",");
-            writer.write(Name+",");
-            writer.write(Address+" ");
-            writer.write(Address1+" ");
-            writer.write(Address2+",");
-            writer.write(Pno+"\n");
-            writer.close();
+            FileWriter fw = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt",true );
+            fw.write(No+ ",");
+            fw.write(Name+ ",");
+            fw.write(Address+ ",");
+            fw.write(Pno+ "\n");
+            fw.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.err.println("File Write denied");
@@ -269,7 +253,7 @@ public class Main {
                     System.out.println("Account Number - " + arr[0]);
                     System.out.println("Account Owners Name - " + arr[1]);
                     System.out.println("Address - " + arr[2]);
-                    System.out.println("Contact Number " + arr[3]);
+                    System.out.println("Contact Number - " + arr[3]);
                     System.out.println(" ");
                     user=true;
                 }
