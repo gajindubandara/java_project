@@ -30,6 +30,7 @@ public class Main {
                 System.out.println("6-Delete A User");
                 System.out.println("7-Update Bill");
                 System.out.println("8-Update Profile");
+                System.out.println("9-Delete Bill");
 
 
                 System.out.println("Enter your option");
@@ -56,8 +57,11 @@ public class Main {
                     case 7:
                         updateBill();
                         break;
-                    case 8:
-                        updateProfile();
+//                    case 8:
+//                        updateProfile();
+//                        break;
+                    case 9:
+                        deleteBill();
                         break;
                     default:
                         System.out.println("Invalid option");
@@ -302,6 +306,53 @@ public class Main {
             }else {
                 try {
                     FileWriter writer=new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+                    for(String rec:lines) {
+                        writer.write(rec+"\n");
+
+                    }
+                    System.out.println("Record Removed!!!");
+                    writer.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    System.err.println("File Write denied");
+                }
+
+            }
+            sc.close();
+
+        } catch(FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    private static void deleteBill() {
+        File myObj=new File("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+        try {
+            Scanner sc=new Scanner(myObj);
+            Scanner sc1=new Scanner(System.in);
+            System.out.println("Enter The Account No:");
+            String AcNo=sc1.next();
+            System.out.println("Enter Month:(ex-January)");
+            String Month=sc1.next();
+            boolean flag=false;
+            String line="";
+            ArrayList<String> lines=new ArrayList<String>();
+            while(sc.hasNextLine()) {
+                line=sc.nextLine();
+                String[] arr=line.split(",");
+                if(arr[1].equals(AcNo) && arr[0].equals(Month)) {
+                    flag=true;
+                }else {
+                    lines.add(line);
+                }
+            }
+
+            if(flag==false) {
+                System.out.println("Record not found");
+            }else {
+                try {
+                    FileWriter writer=new FileWriter("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
                     for(String rec:lines) {
                         writer.write(rec+"\n");
 
