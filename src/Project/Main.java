@@ -22,9 +22,9 @@ public class Main {
             String ans="yes";
             while(ans.equals("yes")) {
                 System.out.println("Choose the Option");
-                System.out.println("1-Record a new user");
+                System.out.println("1-Add A New User");
                 System.out.println("2-Display All Users");
-                System.out.println("3-Add units");
+                System.out.println("3-Add Consumed Units For The Month ");
                 System.out.println("4-Get bill");
                 System.out.println("5-Find A User");
                 System.out.println("6-Delete A User");
@@ -250,10 +250,15 @@ public class Main {
                 line=sc.nextLine();
                 String[] arr=line.split(",");
                 if(arr[0].equals(AcNo)) {
+                    System.out.println(" ");
+                    System.out.println("----------------------------------------------------------------------");
+                    System.out.println(" ");
                     System.out.println("Account Number - " + arr[0]);
                     System.out.println("Account Owners Name - " + arr[1]);
                     System.out.println("Address - " + arr[2]);
                     System.out.println("Contact Number - " + arr[3]);
+                    System.out.println(" ");
+                    System.out.println("----------------------------------------------------------------------");
                     System.out.println(" ");
                     user=true;
                 }
@@ -429,13 +434,6 @@ public class Main {
             System.out.println("Enter Address: ");
             Address=sc1.nextLine();
 
-//            System.out.println("Enter User Account No:");
-////            int AcNo=sc1.nextInt();
-//            String AcNo=sc1.next();
-//            System.out.println("Enter the Month:");
-//            String Month=sc1.next();
-//            System.out.println("Enter the new Units:");
-//            int Units=sc1.nextInt();
             boolean flag=false;
             String line="";
             ArrayList<String> lines=new ArrayList<String>();
@@ -450,7 +448,7 @@ public class Main {
             }
 
             if(flag==false) {
-                System.out.println("The Bill Information Not Found");
+                System.out.println("User Not Found");
             }else {
                 String line1=No+","+ Name +","+Address+","+Pno;
                 lines.add(line1);
@@ -459,7 +457,7 @@ public class Main {
                     for(String rec:lines) {
                         writer.write(rec+"\n");
                     }
-                    System.out.println("Bill Updated Successfully!!!");
+                    System.out.println("User Information Updated Successfully!!!");
                     writer.close();
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
