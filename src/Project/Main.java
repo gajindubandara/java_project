@@ -58,9 +58,9 @@ public class Main {
                     case 7:
                         updateBill();
                         break;
-//                    case 8:
-//                        updateProfile();
-//                        break;
+                    case 8:
+                        updateProfile();
+                        break;
                     case 9:
                         deleteBill();
                         break;
@@ -413,168 +413,69 @@ public class Main {
         }
     }
 
-//    private static void updateProfile() {
-//        File myObj=new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
-//        try {
-//            Scanner sc=new Scanner(myObj);
-//            Scanner sc1=new Scanner(System.in);
+    private static void updateProfile() {
+        File myObj=new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        try {
+            Scanner sc=new Scanner(myObj);
+            Scanner sc1=new Scanner(System.in);
+            String No,Name,Pno,Address;
+
+            System.out.println("Enter Account Number:");
+            No=sc1.nextLine();
+            System.out.println("Enter Name: (Firstname & Secondname)");
+            Name=sc1.nextLine();
+            System.out.println("Enter Phone Number:");
+            Pno=sc1.nextLine();
+            System.out.println("Enter Address: ");
+            Address=sc1.nextLine();
+
 //            System.out.println("Enter User Account No:");
+////            int AcNo=sc1.nextInt();
 //            String AcNo=sc1.next();
-//
-//            String line="";
-//            boolean user=false;
-//
-//            while(sc.hasNextLine()) {
-//                line=sc.nextLine();
-//                String[] arr=line.split(",");
-//                if(arr[0].equals(AcNo)) {
-//                    System.out.println("Account Number - " + arr[0]);
-//                    System.out.println("Account Owners Name - " + arr[1]);
-//                    System.out.println("Address - " + arr[2]);
-//                    System.out.println("Contact Number " + arr[3]);
-//                    System.out.println(" ");
-//                    user=true;
-//                }
-//            }
-//            if (user==false){
-//                System.out.println("Invalid User Account Number");
-//            }
-//
-//            System.out.println("Do You Need To Update The Above Profile Information ?(yes/no)");
-//            String ans=sc1.next();
-//
-//            if (ans.equals("yes")){
-//                System.out.println("hello");
-//                String Name="";
-//                String Address="";
-//                String Address1="";
-//                String Address2="";
-//                int Pno=0;
-//
-//
-//                System.out.println("Enter Name: (Firstname & Secondname)");
-//                Name=sc.next();
-//                Name+=sc.nextLine();
-//
-//                System.out.println("Enter Phone Number:");
-//                Pno=sc.nextInt();
-//
-//
-//                System.out.println("Enter Address: ");
-//                System.out.println("No:");
-//                System.out.println("Street:");
-//                System.out.println("city:");
-//                Address=sc.next();
-//                Address1=sc.next();
-//                Address2=sc.next();
-//
-//                boolean flag=false;
-//                ArrayList<String> lines=new ArrayList<String>();
-//                while(sc.hasNextLine()) {
-//                    line=sc.nextLine();
-//                    String[] arr=line.split(",");
-//                    if(arr[0].equals(AcNo)) {
-//                        flag=true;
-//                    }else {
-//                        lines.add(line);
-//                    }
-//                }
-//                if(flag==false) {
-//                    System.out.println("The Bill Information Not Found");
-//                }else {
-//                    String line1=AcNo+","+ Name +","+ Address + Address1 + Address2 +","+Pno;
-//                    lines.add(line1);
-//                    try {
-//                        FileWriter writer=new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
-//                        for(String rec:lines) {
-//                            writer.write(rec+"\n");
-//                        }
-//                        System.out.println("User Updated Successfully!!!");
-//                        writer.close();
-//                    } catch (IOException e) {
-//                        // TODO Auto-generated catch block
-//                        System.err.println("File Write denied");
-//                    }
-//
-//                }
-//                sc.close();
-//
-////                System.out.println("Choose the Option");
-////                System.out.println("1-Update User Name");
-////                System.out.println("2-Update User Address");
-////                System.out.println("3-Update User Contact No");
-////                System.out.println("Enter your option");
-////                int option=sc.nextInt();
-////                switch(option){
-////                    case 1:
-////                        System.out.println("Enter the Name:");
-////                        String Name=sc1.next();
-////                        System.out.println(Name);
-////                        break;
-////                    case 2:
-////                        System.out.println("Enter the Address:");
-////                        String Address=sc1.next();
-////                        System.out.println(Address);
-////                        break;
-////                    case 3:
-////                        System.out.println("Enter the Contact No:");
-////                        String Contact =sc1.next();
-////                        System.out.println(Contact);
-////                    default:
-////                        System.out.println("Invalid option");
-////                }
-//            }
-//
-//
-//
-//
-//
-//
-//
-//
-////            System.out.println("Enter the Month:");
-////            String Month=sc1.next();
-////            System.out.println("Enter the new Units:");
-////            int Units=sc1.nextInt();
-////            boolean flag=false;
-////
-////            ArrayList<String> lines=new ArrayList<String>();
-////            while(sc.hasNextLine()) {
-////                line=sc.nextLine();
-////                String[] arr=line.split(",");
-////                if(arr[0].equals(Month) && arr[1].equals(AcNo)) {
-////                    flag=true;
-////                }else {
-////                    lines.add(line);
-////                }
-////            }
-////
-////            if(flag==false) {
-////                System.out.println("The Bill Information Not Found");
-////            }else {
-////                int Price= Units*100;
-////                String line1=Month+","+ AcNo +","+Units+","+Price;
-////                lines.add(line1);
-////                try {
-////                    FileWriter writer=new FileWriter("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
-////                    for(String rec:lines) {
-////                        writer.write(rec+"\n");
-////                    }
-////                    System.out.println("Bill Updated Successfully!!!");
-////                    writer.close();
-////                } catch (IOException e) {
-////                    // TODO Auto-generated catch block
-////                    System.err.println("File Write denied");
-////                }
-////
-////            }
-////            sc.close();
-//
-//        } catch(FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
+//            System.out.println("Enter the Month:");
+//            String Month=sc1.next();
+//            System.out.println("Enter the new Units:");
+//            int Units=sc1.nextInt();
+            boolean flag=false;
+            String line="";
+            ArrayList<String> lines=new ArrayList<String>();
+            while(sc.hasNextLine()) {
+                line=sc.nextLine();
+                String[] arr=line.split(",");
+                if(arr[0].equals(No) ) {
+                    flag=true;
+                }else {
+                    lines.add(line);
+                }
+            }
+
+            if(flag==false) {
+                System.out.println("The Bill Information Not Found");
+            }else {
+                String line1=No+","+ Name +","+Address+","+Pno;
+                lines.add(line1);
+                try {
+                    FileWriter writer=new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+                    for(String rec:lines) {
+                        writer.write(rec+"\n");
+                    }
+                    System.out.println("Bill Updated Successfully!!!");
+                    writer.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    System.err.println("File Write denied");
+                }
+
+            }
+            sc.close();
+
+        } catch(FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
