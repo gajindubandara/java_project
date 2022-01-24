@@ -31,6 +31,7 @@ public class Main {
                 System.out.println("7-Update Bill");
                 System.out.println("8-Update Profile");
                 System.out.println("9-Delete Bill");
+                System.out.println("10-Help");
 
 
                 System.out.println("Enter your option");
@@ -62,6 +63,9 @@ public class Main {
 //                        break;
                     case 9:
                         deleteBill();
+                        break;
+                    case 10:
+                        help();
                         break;
                     default:
                         System.out.println("Invalid option");
@@ -590,7 +594,24 @@ public class Main {
 
 
 
+    private static void help() {
+        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/help.txt");
+        try {
+            Scanner sc = new Scanner(myObj);
+            while (sc.hasNextLine()) {
+                String line=sc.nextLine();
+                System.out.println(line);
 
+
+
+            }
+            sc.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 
 

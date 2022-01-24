@@ -1,0 +1,25 @@
+
+*///////////////////////////////////////*
+HELP!
+
+*First choose a option and enter the number of the option
+
+***** 1- Record a new User *****
+Use this function to add a new user to the records
+
+***** 2- Display All Users *****
+Use this function view all the users
+
+***** 3- Add Units *****
+Use this function to add monthly unit consumption of each user
+
+***** 4- Print Bill *****
+Use this function and give the user account number anthe the month
+then you will receive the bill of the user
+
+help!!!
+help!!!
+help!!!
+help!!!
+end of help
+*///////////////////////////////////////*
