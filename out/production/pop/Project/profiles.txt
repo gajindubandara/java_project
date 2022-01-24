@@ -1,0 +1,6 @@
+1,Bruce Wayne,1 katugastota kandy,1236547890
+2,Ben Ten,2 katugastota kandy,1236547890
+3,Kevin Levin,3 katugastota kandy,1236547890
+4,Tony Stark,4 katugastota kandy,1236547890
+5,Luke Skywalker,5 katugastota kandy,1236547890
+6,kLuke Skywalker,5 katugastota kandy,1236547890
