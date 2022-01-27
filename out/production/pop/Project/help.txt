@@ -1,25 +1,141 @@
+*////////////////////////////////////////////////////////////////////////////////////////////////*
+USER MANUAL
 
-*///////////////////////////////////////*
-HELP!
+First, choose an option by pressing the relevant option number and press “Enter”
 
-*First choose a option and enter the number of the option
+    1-Register A New Customer
+    2-Display All Customers
+    3-Find A Customer
+    4-Update Customer Profile
+    5-Delete A Customer
+    6-Create A Bill Record For A Month
+    7-Print A bill
+    8-Update Bill Information
+    9-Delete Bill
+    10-Help
 
-***** 1- Record a new User *****
+
+***** 1- Register A New Customer *****************************************************************
 Use this function to add a new user to the records
 
-***** 2- Display All Users *****
-Use this function view all the users
+Steps -
+    1) Type the first name and the last name
+    2) Press “Enter”
+    3) Type the contact number (This should be in numeric format)
+    4) Press “Enter”
+    5) Type the address
+    6) Press “Enter”
+    7) Assign a new account number for the user (must be a unique one)
+    8) Press “Enter”
+Customer added successfully!
 
-***** 3- Add Units *****
-Use this function to add monthly unit consumption of each user
 
-***** 4- Print Bill *****
-Use this function and give the user account number anthe the month
-then you will receive the bill of the user
 
-help!!!
-help!!!
-help!!!
-help!!!
-end of help
-*///////////////////////////////////////*
+***** 2- Display All Customers *******************************************************************
+After selecting option 2 in the selection phase all the customers will be displayed on the screen
+
+
+
+***** 3- Find A Customer *************************************************************************
+Use this option to see the information of a specific customer
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter”
+The account information will be displayed
+
+
+
+***** 4- Update A Customer ***********************************************************************
+Use this option to update the information of an existing customer
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter”
+    3)Type the first name and the last name
+    4)Press “Enter”
+    5)Type the contact number (This should be in numeric format)
+    6)Press “Enter”
+    7)Type the address
+    8)Press “Enter”
+Customer information updated successfully!
+
+
+
+***** 5- Delete A Customer ***********************************************************************
+Use this option to delete an existing customer
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter
+Customer removed successfully!
+
+
+
+***** 6- Create A Bill Record For A New Month ****************************************************
+Use this option to add bill information for a new month to an existing customer
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter
+    3)Type the Month
+        Month should be in the below format
+            * January
+            * February
+            * March
+            * April
+            * May
+            * June
+            * July
+            * August
+            * September
+            * October
+            * November
+            * December
+    4)Press “Enter”
+    5)Types the burned units for the month (This should be in numeric format)
+    6)Press “Enter”
+Record added successfully!
+
+
+
+***** 7- Print A Bill ****************************************************************************
+Use this option to print the bill of a customer for an existing monthly record
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter
+    3)Type the Month (Month should be in the above-described format on option 6)
+    4)Press “Enter”
+The bill will be displayed!
+
+
+
+***** 8- Update Bill Information *****************************************************************
+Use this option to update the bill of a customer for an existing monthly record
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter
+    3)Type the Month (Month should be in the above-described format on option 6 )
+    4)Press “Enter”
+    5)Types the new burned units for the month (This should be in numeric format)
+    6)Press “Enter”
+Bill record updated successfully!
+
+
+
+***** 9- Delete A Bill Record ********************************************************************
+Use this option to delete a bill of a customer for an existing monthly record
+
+Steps-
+    1)Type the account number (Must be an existing account number)
+    2)Press “Enter
+    3)Type the Month (Month should be in the above-described format on option 6 )
+    4)Press “Enter”
+Record Removed Successfully!
+
+***** 10- Help ***********************************************************************************
+Use this option to view this page!
+
+*////////////////////////////////////////////////////////////////////////////////////////////////*
