@@ -106,7 +106,8 @@ public class Main {
 
     //Function to add new customers
     private static boolean addProfile() {
-        String Name, Address, stringPno,stringNo;
+
+        String Name, Address, stringPno,stringNo = " ";
         int No = 0;
         int Pno=0;
         Scanner sc = new Scanner(System.in);
@@ -127,6 +128,7 @@ public class Main {
             }
             System.out.println("Enter Address: ");
             Address = sc.nextLine();
+
             boolean intCheckNo = false;
             while (intCheckNo != true) {
                 try {
@@ -138,24 +140,40 @@ public class Main {
                     System.out.println("Account Number Must be a Numeric Value");
                 }
             }
-            System.out.println("Customer added successfully!");
 
+            if (intCheckNo ==true){
+                File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+                Scanner scfile = new Scanner(myObj);
+                boolean accCheck = false;
+                String line = "";
+                while (scfile.hasNextLine()) {
+                    line = scfile.nextLine();
+                    String[] arr = line.split(",");
+                    if (arr[0].equals(stringNo)) {
+                        accCheck = true;
 
-        } catch (InputMismatchException e) {
+                    }
+                }
+                if (accCheck == false) {
+                    try {
+                        FileWriter fw = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt", true);
+                        fw.write(No + ",");
+                        fw.write(Name + ",");
+                        fw.write(Address + ",");
+                        fw.write(Pno + "\n");
+                        fw.close();
+                        System.out.println("Customer added successfully!");
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        System.err.println("File Write denied");
+                        return false;
+                    }
+                } else {
+                    System.out.println("There is an existing account for this account number.Please check again!");
+                }
+            }
+        }catch (InputMismatchException | FileNotFoundException e) {
             System.out.println("Invalid data entry");
-            return false;
-        }
-
-        try {
-            FileWriter fw = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt", true);
-            fw.write(No + ",");
-            fw.write(Name + ",");
-            fw.write(Address + ",");
-            fw.write(Pno + "\n");
-            fw.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            System.err.println("File Write denied");
             return false;
         }
 
