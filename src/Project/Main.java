@@ -88,7 +88,7 @@ public class Main {
     public static String readCredentials(String user) {
         String password = "";
         try {
-            File userFile = new File("/home/gaji/projects/Degree/pop/src/Project/login.txt");
+            File userFile = new File("/home/gaji/projects/Degree/java-project/src/Project/login.txt");
             Scanner sc = new Scanner(userFile);
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
@@ -147,7 +147,7 @@ public class Main {
         }
 
         try {
-            FileWriter fw = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt", true);
+            FileWriter fw = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt", true);
             fw.write(No + ",");
             fw.write(Name + ",");
             fw.write(Address + ",");
@@ -164,7 +164,7 @@ public class Main {
 
     //Function to read all customers and print them
     private static void readData() {
-        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
             Scanner sc = new Scanner(myObj);
             while (sc.hasNextLine()) {
@@ -190,7 +190,7 @@ public class Main {
 
     //function to add records for a month
     private static void addUnits() {
-        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
 
             Scanner sc = new Scanner(myObj);
@@ -216,7 +216,7 @@ public class Main {
                 System.out.println("The Customer Account Number is Incorrect Please Check Again!");
             } else {
 
-                File checkData = new File("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+                File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
 
                 System.out.println("Enter The Month (ex- January)");
                 Month = sc1.nextLine();
@@ -258,7 +258,7 @@ public class Main {
                         }
                     }
                     try {
-                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt", true);
+                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt", true);
                         int Price = Units * 100;
                         writer.write(Month + ",");
                         writer.write(No + ",");
@@ -290,7 +290,7 @@ public class Main {
     //function to Print the bill
     private static void getBill() {
 
-        File checkData = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         Scanner sc1 = new Scanner(System.in);
         System.out.println("Enter The Account Number");
         String AcNo = sc1.nextLine();
@@ -322,7 +322,7 @@ public class Main {
 
 
         if (accCheck == true) {
-            File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+            File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
             try {
 
                 Scanner sc = new Scanner(myObj);
@@ -371,7 +371,7 @@ public class Main {
 
     //Function to find a customer profile
     private static void findUser() {
-        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
             Scanner sc = new Scanner(myObj);
             Scanner sc1 = new Scanner(System.in);
@@ -410,7 +410,7 @@ public class Main {
 
     //Function to delete a customer
     private static void deleteUser() {
-        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
 //            int AcNo = 0;
             Scanner sc = new Scanner(myObj);
@@ -434,7 +434,7 @@ public class Main {
                 System.out.println("The Customer Account Number is Incorrect Please Check Again!");
             } else {
                 try {
-                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
                     for (String rec : lines) {
                         writer.write(rec + "\n");
 
@@ -458,7 +458,7 @@ public class Main {
     //function to Print the bill
     private static void deleteBill() {
 
-        File checkData = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         Scanner sc1 = new Scanner(System.in);
         System.out.println("Enter The Account Number");
         String AcNo = sc1.nextLine();
@@ -488,7 +488,7 @@ public class Main {
 
 
         if (accCheck == true) {
-            File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+            File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
             try {
 
                 Scanner sc = new Scanner(myObj);
@@ -518,7 +518,7 @@ public class Main {
 
                 } else if (Data == true) {
                     try {
-                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
                         for (String rec : lines) {
                             writer.write(rec + "\n");
 
@@ -545,7 +545,7 @@ public class Main {
     //function to Print the bill
     private static void updateBill() {
 
-        File checkData = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         Scanner sc1 = new Scanner(System.in);
         System.out.println("Enter The Account Number");
         String AcNo = sc1.nextLine();
@@ -575,7 +575,7 @@ public class Main {
 
 
         if (accCheck == true) {
-            File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+            File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
             try {
 
                 Scanner sc = new Scanner(myObj);
@@ -626,7 +626,7 @@ public class Main {
                     String line1 = Month + "," + AcNo + "," + Units + "," + Price;
                     lines.add(line1);
                     try {
-                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/bill_info.txt");
+                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
                         for (String rec : lines) {
                             writer.write(rec + "\n");
                         }
@@ -652,7 +652,7 @@ public class Main {
 
     //Function to update a customer profile
     private static void updateProfile() {
-        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
             Scanner sc = new Scanner(myObj);
             Scanner sc1 = new Scanner(System.in);
@@ -695,7 +695,7 @@ public class Main {
                 String line1 = No + "," + Name + "," + Address + "," + Pno;
                 lines.add(line1);
                 try {
-                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/pop/src/Project/profiles.txt");
+                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
                     for (String rec : lines) {
                         writer.write(rec + "\n");
                     }
@@ -717,7 +717,7 @@ public class Main {
 
     //Function to view the help page
     private static void help() {
-        File myObj = new File("/home/gaji/projects/Degree/pop/src/Project/help.txt");
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/help.txt");
         try {
             Scanner sc = new Scanner(myObj);
             while (sc.hasNextLine()) {
