@@ -1,11 +1,5 @@
-1,Bruce Wayne,1 katugastota kandy,1236547890
-2,Ben Ten,2 katugastota kandy,1236547890
-3,Kevin Levin,3 katugastota kandy,1236547890
-4,Tony Stark,4 katugastota kandy,1236547890
-5,Luke Skywalker,5 katugastota kandy,1236547890
-6,kLuke Skywalker,5 katugastota kandy,1236547890
-7,saman k,21 galle road colombo,111111111
-45,asd asd,asdsadf adfas,324324
-78,gh dg,sadasd sadas,345453
-23,we we,dsaf,23
-199,Darth Vader,outer rim,1234098765
+1,Amelia Scott,22 Emeral Dreams Drive Arlington Heights IL 60005,815-318-0875
+2,Angelica Chambers,181 Hudson Street Denville NJ 07866,9739839156
+3,Adam Hoffman,2834 Alfred Drive Bayside NY 11361,7182244330
+4,Patrick Ferris,800 New Street Eugene OR 97401 ,1236547890
+5,Dustin Lawrence,4165 Dawson Drive Little Rock AR 72211,5018640431

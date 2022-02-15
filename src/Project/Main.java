@@ -112,7 +112,7 @@ public class Main {
 
         String Name, Address, stringPno,stringNo = " ";
         int No = 0;
-        int Pno=0;
+        long Pno=0;
         Scanner sc = new Scanner(System.in);
 
         try {
@@ -123,13 +123,13 @@ public class Main {
                 try {
                     System.out.println("Enter Contact Number:");
                     stringPno = sc.nextLine();
-                    Pno = Integer.parseInt(stringPno);
+                    Pno = Long.parseLong(stringPno);
                     intCheckPno = true;
                 } catch (NumberFormatException e) {
                     System.out.println("Contact Number Must be a Numeric Value");
                 }
             }
-            System.out.println("Enter Address: ");
+            System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
             Address = sc.nextLine();
 
             boolean intCheckNo = false;
@@ -690,7 +690,7 @@ public class Main {
             Scanner sc = new Scanner(myObj);
             Scanner sc1 = new Scanner(System.in);
             String Name, stringPno, Address,No;
-            int Pno=0;
+            long Pno=0;
             System.out.println("Enter Account Number:");
             No = sc1.nextLine();
 
@@ -717,13 +717,13 @@ public class Main {
                     try {
                         System.out.println("Enter Contact Number:");
                         stringPno = sc1.nextLine();
-                        Pno = Integer.parseInt(stringPno);
+                        Pno = Long.parseLong(stringPno);
                         intCheckPno = true;
                     } catch (NumberFormatException e) {
                         System.out.println("Contact Number Must be a Numeric Value");
                     }
                 }
-                System.out.println("Enter Address: ");
+                System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
                 Address = sc1.nextLine();
                 String line1 = No + "," + Name + "," + Address + "," + Pno;
                 lines.add(line1);
