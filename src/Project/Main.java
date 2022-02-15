@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
@@ -236,7 +239,7 @@ public class Main {
 
                 File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
 
-                System.out.println("Enter The Month (ex- January)");
+                System.out.println("Enter The Month & Year  (ex- January-2022)");
                 Month = sc1.nextLine();
                 try{
 
@@ -276,14 +279,19 @@ public class Main {
                         }
                     }
                     try {
+                        DateTimeFormatter date = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+                        LocalDate localDate = LocalDate.now();
+                        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+                        LocalTime localTime = LocalTime.now();
+
                         FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt", true);
                         int Price = Units * 100;
                         writer.write(Month + ",");
                         writer.write(No + ",");
                         writer.write(Units + ",");
-                        writer.write(Price + "\n");
-
-
+                        writer.write(Price + ",");
+                        writer.write(date.format(localDate) + ",");
+                        writer.write(time.format(localTime) + "\n");
                         writer.close();
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
@@ -348,7 +356,7 @@ public class Main {
                 String line = "";
 
 
-                System.out.println("Enter The Month:");
+                System.out.println("Enter The Month & Year  (ex- January-2022)");
                 String Month = sc1.next();
                 boolean noData = false;
                 while (sc.hasNextLine()) {
@@ -359,11 +367,13 @@ public class Main {
                         System.out.println(" ");
                         System.out.println("----------------------------------------------------------------------");
                         System.out.println(" ");
-                        System.out.println("Bill For The Month Of " + arr[0]);
+                        System.out.println("Bill For " + arr[0]);
                         System.out.println("Account Number - " + arr[1]);
                         System.out.println("Customer Name - " + name);
                         System.out.println("No of Units Consumed " + arr[2] + " (1 Unit = Rs.100.00/-)");
                         System.out.println("Total Amount Due Rs. " + arr[3] + ".00/-");
+                        System.out.println("Date - " + arr[4] );
+                        System.out.println("Time - " + arr[5] );
                         System.out.println(" ");
                         System.out.println("----------------------------------------------------------------------");
                         noData = true;
@@ -371,7 +381,7 @@ public class Main {
 
                 }
                 if (noData == false) {
-                    System.out.println("Haven't created the bill for the month of" + " " + Month);
+                    System.out.println("Haven't created the bill for " + " " + Month);
                     System.out.println("First create the bill!");
 
                 }
@@ -514,7 +524,7 @@ public class Main {
                 String line = "";
 
 
-                System.out.println("Enter The Month:");
+                System.out.println("Enter The Month & Year  (ex- January-2022)");
                 String Month = sc1.next();
                 boolean Data = false;
                 ArrayList<String> lines = new ArrayList<String>();
@@ -531,7 +541,7 @@ public class Main {
 
                 }
                 if (Data == false) {
-                    System.out.println("No bill record for the month of" + " " + Month);
+                    System.out.println("No bill record for" + " " + Month);
                     System.out.println("Please check again!");
 
                 } else if (Data == true) {
@@ -601,7 +611,7 @@ public class Main {
                 String line = "";
 
 
-                System.out.println("Enter The Month:");
+                System.out.println("Enter The Month & Year  (ex- January-2022)");
                 String Month = sc1.next();
                 boolean Data = false;
                 ArrayList<String> lines = new ArrayList<String>();
@@ -618,7 +628,7 @@ public class Main {
 
                 }
                 if (Data == false) {
-                    System.out.println("No bill record for the month of" + " " + Month);
+                    System.out.println("No bill record for" + " " + Month);
                     System.out.println("Please check again!");
 
                 } else if (Data == true) {
@@ -641,7 +651,12 @@ public class Main {
 
                     }
                     int Price = Units * 100;
-                    String line1 = Month + "," + AcNo + "," + Units + "," + Price;
+                    DateTimeFormatter date = DateTimeFormatter.ofPattern("uuuu/MM/dd");
+                    LocalDate localDate = LocalDate.now();
+                    DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    LocalTime localTime = LocalTime.now();
+
+                    String line1 = Month + "," + AcNo + "," + Units + "," + Price + "," + date.format(localDate) + "," + time.format(localTime);
                     lines.add(line1);
                     try {
                         FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
