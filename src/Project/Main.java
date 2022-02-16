@@ -58,7 +58,7 @@ public class Main {
                         addUnits();
                         break;
                     case 7:
-                        getBill();
+                        printBill();
                         break;
                     case 8:
                         updateBill();
@@ -79,12 +79,13 @@ public class Main {
                 System.out.println("*************************************");
                 System.out.println(" ");
 
-                    ans = scanner.next();
+                ans = scanner.next();
 
             }
         } else {
             System.out.println("Invalid Username or Password");
         }
+//        scanner.close();
     }
 
     //Function to check the login credentials
@@ -92,14 +93,15 @@ public class Main {
         String password = "";
         try {
             File userFile = new File("/home/gaji/projects/Degree/java-project/src/Project/login.txt");
-            Scanner sc = new Scanner(userFile);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
+            Scanner readData = new Scanner(userFile);
+            while (readData.hasNextLine()) {
+                String line = readData.nextLine();
                 String[] arr = line.split(",");
                 if (arr[0].equals(user)) {
                     password = arr[1];
                 }
             }
+            readData.close();
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         }
@@ -110,19 +112,21 @@ public class Main {
     //Function to add new customers
     private static boolean addProfile() {
 
-        String Name, Address, stringPno,stringNo = " ";
+        String Name, Address, stringPno, stringNo = " ";
         int No = 0;
-        long Pno=0;
-        Scanner sc = new Scanner(System.in);
+        long Pno = 0;
+        Scanner profileInfo = new Scanner(System.in);
 
         try {
             System.out.println("Enter Name: (Firstname & Lastname)");
-            Name = sc.nextLine();
+            Name = profileInfo.nextLine();
+
+            //Check if the entered contact number is in numeric format
             boolean intCheckPno = false;
             while (intCheckPno != true) {
                 try {
                     System.out.println("Enter Contact Number:");
-                    stringPno = sc.nextLine();
+                    stringPno = profileInfo.nextLine();
                     Pno = Long.parseLong(stringPno);
                     intCheckPno = true;
                 } catch (NumberFormatException e) {
@@ -130,13 +134,14 @@ public class Main {
                 }
             }
             System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
-            Address = sc.nextLine();
+            Address = profileInfo.nextLine();
 
+            //Check if the entered account number is in numeric format
             boolean intCheckNo = false;
             while (intCheckNo != true) {
                 try {
                     System.out.println("Enter Account Number:");
-                    stringNo = sc.nextLine();
+                    stringNo = profileInfo.nextLine();
                     No = Integer.parseInt(stringNo);
                     intCheckNo = true;
                 } catch (NumberFormatException e) {
@@ -144,13 +149,13 @@ public class Main {
                 }
             }
 
-            if (intCheckNo ==true){
+            if (intCheckNo == true) {
                 File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-                Scanner scfile = new Scanner(myObj);
+                Scanner checkAcc = new Scanner(myObj);
                 boolean accCheck = false;
                 String line = "";
-                while (scfile.hasNextLine()) {
-                    line = scfile.nextLine();
+                while (checkAcc.hasNextLine()) {
+                    line = checkAcc.nextLine();
                     String[] arr = line.split(",");
                     if (arr[0].equals(stringNo)) {
                         accCheck = true;
@@ -174,12 +179,12 @@ public class Main {
                 } else {
                     System.out.println("There is an existing account for this account number.Please check again!");
                 }
+                checkAcc.close();
             }
-        }catch (InputMismatchException | FileNotFoundException e) {
+        } catch (InputMismatchException | FileNotFoundException e) {
             System.out.println("Invalid data entry");
             return false;
         }
-
         return true;
     }
 
@@ -187,9 +192,9 @@ public class Main {
     private static void readData() {
         File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
-            Scanner sc = new Scanner(myObj);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
+            Scanner readFile = new Scanner(myObj);
+            while (readFile.hasNextLine()) {
+                String line = readFile.nextLine();
                 String[] arr = line.split(",");
                 System.out.println("----------------------------------------------------------------------");
                 System.out.println(" ");
@@ -201,7 +206,160 @@ public class Main {
 
 
             }
-            sc.close();
+            readFile.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    //Function to find a customer profile
+    private static void findUser() {
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+        try {
+            Scanner readProfiles = new Scanner(myObj);
+            Scanner userInfo = new Scanner(System.in);
+            System.out.println("Enter Account Number:");
+            String AcNo = userInfo.next();
+            String line = "";
+            boolean user = false;
+
+            while (readProfiles.hasNextLine()) {
+                line = readProfiles.nextLine();
+                String[] arr = line.split(",");
+                if (arr[0].equals(AcNo)) {
+                    System.out.println(" ");
+                    System.out.println("----------------------------------------------------------------------");
+                    System.out.println(" ");
+                    System.out.println("Account Number - " + arr[0]);
+                    System.out.println("Account Owners Name - " + arr[1]);
+                    System.out.println("Address - " + arr[2]);
+                    System.out.println("Contact Number - " + arr[3]);
+                    System.out.println(" ");
+                    System.out.println("----------------------------------------------------------------------");
+                    System.out.println(" ");
+                    user = true;
+                }
+            }
+            if (user == false) {
+                System.out.println("Invalid User Account Number");
+            }
+            readProfiles.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    //Function to update a customer profile
+    private static void updateProfile() {
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+        try {
+            Scanner user = new Scanner(myObj);
+            Scanner userInfo = new Scanner(System.in);
+            String Name, stringPno, Address, No;
+            long Pno = 0;
+            System.out.println("Enter Account Number:");
+            No = userInfo.nextLine();
+
+            //Check if the account exist
+            boolean account = false;
+            String line = "";
+            ArrayList<String> lines = new ArrayList<String>();
+            while (user.hasNextLine()) {
+                line = user.nextLine();
+                String[] arr = line.split(",");
+                if (arr[0].equals(No)) {
+                    account = true;
+                } else {
+                    lines.add(line);
+                }
+            }
+
+            if (account == false) {
+                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
+            } else {
+                System.out.println("Enter Name: (Firstname & Lastname)");
+                Name = userInfo.nextLine();
+                boolean intCheckPno = false;
+                while (intCheckPno != true) {
+                    try {
+                        System.out.println("Enter Contact Number:");
+                        stringPno = userInfo.nextLine();
+                        Pno = Long.parseLong(stringPno);
+                        intCheckPno = true;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Contact Number Must be a Numeric Value");
+                    }
+                }
+                System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
+                Address = userInfo.nextLine();
+                String line1 = No + "," + Name + "," + Address + "," + Pno;
+                lines.add(line1);
+                try {
+                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+                    for (String rec : lines) {
+                        writer.write(rec + "\n");
+                    }
+                    System.out.println("Customer Information Updated Successfully!!!");
+                    writer.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    System.err.println("File Write denied");
+                }
+
+            }
+            user.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    //Function to delete a customer
+    private static void deleteUser() {
+        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+        try {
+            Scanner user = new Scanner(myObj);
+            Scanner accNo = new Scanner(System.in);
+            System.out.println("Enter The Account No:");
+            String AcNo = accNo.next();
+
+           //Check if the account exist
+            boolean account = false;
+            String line = "";
+            ArrayList<String> lines = new ArrayList<String>();
+            while (user.hasNextLine()) {
+                line = user.nextLine();
+                String[] arr = line.split(",");
+                if (arr[0].equals(AcNo)) {
+                    account = true;
+                } else {
+                    lines.add(line);
+                }
+            }
+
+            if (account == false) {
+                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
+            } else {
+                try {
+                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+                    for (String rec : lines) {
+                        writer.write(rec + "\n");
+
+                    }
+                    System.out.println("Customer Removed!!!");
+                    writer.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    System.err.println("File Write denied");
+                }
+
+            }
+            user.close();
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -214,64 +372,64 @@ public class Main {
         File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
         try {
 
-            Scanner sc = new Scanner(myObj);
-            Scanner sc1 = new Scanner(System.in);
+            Scanner user = new Scanner(myObj);
+            Scanner billData = new Scanner(System.in);
             String Month, No, stringUnits;
             int Units = 0;
             System.out.println("Enter Account Number:");
-            No = sc1.nextLine();
-            boolean monthCheck =false;
-
-
+            No = billData.nextLine();
+            boolean monthCheck = false;
             boolean accCheck = false;
             String line = "";
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
+
+           //Check if the account exist
+            while (user.hasNextLine()) {
+                line = user.nextLine();
                 String[] arr = line.split(",");
                 if (arr[0].equals(No)) {
                     accCheck = true;
 
                 }
             }
+            user.close();
             if (accCheck == false) {
                 System.out.println("The Customer Account Number is Incorrect Please Check Again!");
             } else {
 
                 File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
 
-                System.out.println("Enter The Month & Year  (ex- January-2022)");
-                Month = sc1.nextLine();
-                try{
+                System.out.println("Enter The Month & Year  (ex- January/2022)");
+                Month = billData.nextLine();
+                try {
+                    Scanner billInfo = new Scanner(checkData);
 
-                    Scanner sc2 = new Scanner(checkData);
-                    while (sc2.hasNextLine() ) {
-                        line = sc2.nextLine();
+                    //Check if there is an existing record for this month
+                    while (billInfo.hasNextLine()) {
+                        line = billInfo.nextLine();
                         String[] arrCheck = line.split(",");
-                        if (monthCheck=true && arrCheck[0].equals(Month)) {
+                        if (monthCheck = true && arrCheck[0].equals(Month)) {
                             System.out.println("There is an existing record for this month. Please Check Again! ");
-                            monthCheck=false;
+                            monthCheck = false;
                             break;
 
-                        }else {
-                            monthCheck=true;
+                        } else {
+                            monthCheck = true;
                         }
                     }
-                }
-                catch (FileNotFoundException e) {
+                } catch (FileNotFoundException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
 
-
-                if(monthCheck!=false){
+                if (monthCheck != false) {
                     boolean intCheck = false;
 
-                    while (intCheck != true && monthCheck!=false) {
+                    while (intCheck != true && monthCheck != false) {
                         try {
 
                             System.out.println("Enter Burned Units:");
-                            stringUnits = sc1.nextLine();
+                            stringUnits = billData.nextLine();
                             Units = Integer.parseInt(stringUnits);
                             intCheck = true;
                         } catch (NumberFormatException e) {
@@ -302,11 +460,7 @@ public class Main {
                 }
 
 
-
-
             }
-            sc.close();
-
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -314,20 +468,22 @@ public class Main {
     }
 
     //function to Print the bill
-    private static void getBill() {
+    private static void printBill() {
 
         File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-        Scanner sc1 = new Scanner(System.in);
+        Scanner userInfo = new Scanner(System.in);
         System.out.println("Enter The Account Number");
-        String AcNo = sc1.nextLine();
+        String AcNo = userInfo.nextLine();
         boolean accCheck = false;
         String name = "";
 
         try {
             String lineF;
-            Scanner sc2 = new Scanner(checkData);
-            while (sc2.hasNextLine()) {
-                lineF = sc2.nextLine();
+            Scanner checkAcc = new Scanner(checkData);
+
+            //Check if the account exist
+            while (checkAcc.hasNextLine()) {
+                lineF = checkAcc.nextLine();
                 String[] arrCheck = lineF.split(",");
                 if (arrCheck[0].equals(AcNo)) {
                     name = arrCheck[1];
@@ -341,6 +497,7 @@ public class Main {
 
                 }
             }
+            checkAcc.close();
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -352,12 +509,12 @@ public class Main {
             try {
 
                 Scanner sc = new Scanner(myObj);
-                sc1 = new Scanner(System.in);
+                userInfo = new Scanner(System.in);
                 String line = "";
 
 
-                System.out.println("Enter The Month & Year  (ex- January-2022)");
-                String Month = sc1.next();
+                System.out.println("Enter The Month & Year  (ex- January/2022)");
+                String Month = userInfo.next();
                 boolean noData = false;
                 while (sc.hasNextLine()) {
                     line = sc.nextLine();
@@ -372,8 +529,8 @@ public class Main {
                         System.out.println("Customer Name - " + name);
                         System.out.println("No of Units Consumed " + arr[2] + " (1 Unit = Rs.100.00/-)");
                         System.out.println("Total Amount Due Rs. " + arr[3] + ".00/-");
-                        System.out.println("Date - " + arr[4] );
-                        System.out.println("Time - " + arr[5] );
+                        System.out.println("Date - " + arr[4]);
+                        System.out.println("Time - " + arr[5]);
                         System.out.println(" ");
                         System.out.println("----------------------------------------------------------------------");
                         noData = true;
@@ -394,196 +551,24 @@ public class Main {
         } else if (accCheck == false) {
             System.out.println("Invalid account number! ");
         }
-
-    }
-
-    //Function to find a customer profile
-    private static void findUser() {
-        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-        try {
-            Scanner sc = new Scanner(myObj);
-            Scanner sc1 = new Scanner(System.in);
-            System.out.println("Enter Account Number:");
-            String AcNo = sc1.next();
-            String line = "";
-            boolean user = false;
-
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                String[] arr = line.split(",");
-                if (arr[0].equals(AcNo)) {
-                    System.out.println(" ");
-                    System.out.println("----------------------------------------------------------------------");
-                    System.out.println(" ");
-                    System.out.println("Account Number - " + arr[0]);
-                    System.out.println("Account Owners Name - " + arr[1]);
-                    System.out.println("Address - " + arr[2]);
-                    System.out.println("Contact Number - " + arr[3]);
-                    System.out.println(" ");
-                    System.out.println("----------------------------------------------------------------------");
-                    System.out.println(" ");
-                    user = true;
-                }
-            }
-            if (user == false) {
-                System.out.println("Invalid User Account Number");
-            }
-            sc.close();
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    //Function to delete a customer
-    private static void deleteUser() {
-        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-        try {
-//            int AcNo = 0;
-            Scanner sc = new Scanner(myObj);
-            Scanner sc1 = new Scanner(System.in);
-            System.out.println("Enter The Account No:");
-            String AcNo = sc1.next();
-            boolean flag = false;
-            String line = "";
-            ArrayList<String> lines = new ArrayList<String>();
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                String[] arr = line.split(",");
-                if (arr[0].equals(AcNo)) {
-                    flag = true;
-                } else {
-                    lines.add(line);
-                }
-            }
-
-            if (flag == false) {
-                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
-            } else {
-                try {
-                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-                    for (String rec : lines) {
-                        writer.write(rec + "\n");
-
-                    }
-                    System.out.println("Customer Removed!!!");
-                    writer.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    System.err.println("File Write denied");
-                }
-
-            }
-            sc.close();
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    //function to Print the bill
-    private static void deleteBill() {
-
-        File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-        Scanner sc1 = new Scanner(System.in);
-        System.out.println("Enter The Account Number");
-        String AcNo = sc1.nextLine();
-        boolean accCheck = false;
-
-        try {
-            String lineF;
-            Scanner sc2 = new Scanner(checkData);
-            while (sc2.hasNextLine()) {
-                lineF = sc2.nextLine();
-                String[] arrCheck = lineF.split(",");
-                if (arrCheck[0].equals(AcNo)) {
-                    accCheck = true;
-                    break;
-
-
-                } else {
-                    accCheck = false;
-
-
-                }
-            }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-
-        if (accCheck == true) {
-            File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
-            try {
-
-                Scanner sc = new Scanner(myObj);
-                sc1 = new Scanner(System.in);
-                String line = "";
-
-
-                System.out.println("Enter The Month & Year  (ex- January-2022)");
-                String Month = sc1.next();
-                boolean Data = false;
-                ArrayList<String> lines = new ArrayList<String>();
-                while (sc.hasNextLine()) {
-                    line = sc.nextLine();
-                    String[] arr = line.split(",");
-
-                    if (arr[0].equals(Month)) {
-
-                        Data = true;
-                    } else {
-                        lines.add(line);
-                    }
-
-                }
-                if (Data == false) {
-                    System.out.println("No bill record for" + " " + Month);
-                    System.out.println("Please check again!");
-
-                } else if (Data == true) {
-                    try {
-                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
-                        for (String rec : lines) {
-                            writer.write(rec + "\n");
-
-                        }
-                        System.out.println("Record Removed!!!");
-                        writer.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        System.err.println("File Write denied");
-                    }
-                }
-                sc.close();
-
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else if (accCheck == false) {
-            System.out.println("Invalid account number! ");
-        }
-
     }
 
     //function to Print the bill
     private static void updateBill() {
 
         File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-        Scanner sc1 = new Scanner(System.in);
+        Scanner userInfo = new Scanner(System.in);
         System.out.println("Enter The Account Number");
-        String AcNo = sc1.nextLine();
+        String AcNo = userInfo.nextLine();
         boolean accCheck = false;
 
         try {
             String lineF;
-            Scanner sc2 = new Scanner(checkData);
-            while (sc2.hasNextLine()) {
-                lineF = sc2.nextLine();
+            Scanner checkAcc = new Scanner(checkData);
+
+            //Check if the account exist
+            while (checkAcc.hasNextLine()) {
+                lineF = checkAcc.nextLine();
                 String[] arrCheck = lineF.split(",");
                 if (arrCheck[0].equals(AcNo)) {
                     accCheck = true;
@@ -596,6 +581,7 @@ public class Main {
 
                 }
             }
+            checkAcc.close();
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -606,36 +592,39 @@ public class Main {
             File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
             try {
 
-                Scanner sc = new Scanner(myObj);
-                sc1 = new Scanner(System.in);
+                Scanner billInfo = new Scanner(myObj);
+                userInfo = new Scanner(System.in);
                 String line = "";
 
 
-                System.out.println("Enter The Month & Year  (ex- January-2022)");
-                String Month = sc1.next();
-                boolean Data = false;
+                System.out.println("Enter The Month & Year  (ex- January/2022)");
+                String Month = userInfo.next();
+                boolean record = false;
                 ArrayList<String> lines = new ArrayList<String>();
-                while (sc.hasNextLine()) {
-                    line = sc.nextLine();
+
+                //Check if there is a record for this month
+                while (billInfo.hasNextLine()) {
+                    line = billInfo.nextLine();
                     String[] arr = line.split(",");
 
                     if (arr[0].equals(Month)) {
 
-                        Data = true;
+                        record = true;
                     } else {
                         lines.add(line);
                     }
 
                 }
-                if (Data == false) {
+                if (record == false) {
                     System.out.println("No bill record for" + " " + Month);
                     System.out.println("Please check again!");
 
-                } else if (Data == true) {
+                } else if (record == true) {
                     boolean intCheck = false;
                     String stringUnits;
                     int Units = 0;
 
+                    //Check if the entered units are in numeric format
                     while (intCheck != true) {
                         try {
                             Scanner scUnit = new Scanner(System.in);
@@ -671,7 +660,7 @@ public class Main {
                     }
 
                 }
-                sc.close();
+                billInfo.close();
 
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
@@ -683,69 +672,94 @@ public class Main {
 
     }
 
-    //Function to update a customer profile
-    private static void updateProfile() {
-        File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+    //function to Print the bill
+    private static void deleteBill() {
+
+        File checkData = new File("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
+        Scanner accInfo = new Scanner(System.in);
+        System.out.println("Enter The Account Number");
+        String AcNo = accInfo.nextLine();
+        boolean accCheck = false;
+
         try {
-            Scanner sc = new Scanner(myObj);
-            Scanner sc1 = new Scanner(System.in);
-            String Name, stringPno, Address,No;
-            long Pno=0;
-            System.out.println("Enter Account Number:");
-            No = sc1.nextLine();
+            String lineF;
+            Scanner checkAcc = new Scanner(checkData);
 
-            boolean flag = false;
-            String line = "";
-            ArrayList<String> lines = new ArrayList<String>();
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                String[] arr = line.split(",");
-                if (arr[0].equals(No)) {
-                    flag = true;
+            //Check if the account exist
+            while (checkAcc.hasNextLine()) {
+                lineF = checkAcc.nextLine();
+                String[] arrCheck = lineF.split(",");
+                if (arrCheck[0].equals(AcNo)) {
+                    accCheck = true;
+                    break;
+
+
                 } else {
-                    lines.add(line);
+                    accCheck = false;
+
+
                 }
             }
-
-            if (flag == false) {
-                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
-            } else {
-                System.out.println("Enter Name: (Firstname & Lastname)");
-                Name = sc1.nextLine();
-                boolean intCheckPno = false;
-                while (intCheckPno != true) {
-                    try {
-                        System.out.println("Enter Contact Number:");
-                        stringPno = sc1.nextLine();
-                        Pno = Long.parseLong(stringPno);
-                        intCheckPno = true;
-                    } catch (NumberFormatException e) {
-                        System.out.println("Contact Number Must be a Numeric Value");
-                    }
-                }
-                System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
-                Address = sc1.nextLine();
-                String line1 = No + "," + Name + "," + Address + "," + Pno;
-                lines.add(line1);
-                try {
-                    FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/profiles.txt");
-                    for (String rec : lines) {
-                        writer.write(rec + "\n");
-                    }
-                    System.out.println("Customer Information Updated Successfully!!!");
-                    writer.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    System.err.println("File Write denied");
-                }
-
-            }
-            sc.close();
-
+            checkAcc.close();
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+
+        if (accCheck == true) {
+            File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
+            try {
+
+                Scanner checkBill = new Scanner(myObj);
+                accInfo = new Scanner(System.in);
+                String line = "";
+                System.out.println("Enter The Month & Year  (ex- January/2022)");
+                String Month = accInfo.next();
+                boolean record = false;
+                ArrayList<String> lines = new ArrayList<String>();
+
+                //Check if there is a record for this month
+                while (checkBill.hasNextLine()) {
+                    line = checkBill.nextLine();
+                    String[] arr = line.split(",");
+
+                    if (arr[0].equals(Month)) {
+
+                        record = true;
+                    } else {
+                        lines.add(line);
+                    }
+
+                }
+                if (record == false) {
+                    System.out.println("No bill record for" + " " + Month);
+                    System.out.println("Please check again!");
+
+                } else if (record == true) {
+                    try {
+                        FileWriter writer = new FileWriter("/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt");
+                        for (String rec : lines) {
+                            writer.write(rec + "\n");
+
+                        }
+                        System.out.println("Record Removed!!!");
+                        writer.close();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        System.err.println("File Write denied");
+                    }
+                }
+                checkBill.close();
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else if (accCheck == false) {
+            System.out.println("Invalid account number! ");
+        }
+
     }
 
     //Function to view the help page
@@ -753,6 +767,7 @@ public class Main {
         File myObj = new File("/home/gaji/projects/Degree/java-project/src/Project/help.txt");
         try {
             Scanner sc = new Scanner(myObj);
+            //Read data and display
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 System.out.println(line);
