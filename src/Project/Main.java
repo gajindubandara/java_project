@@ -407,7 +407,7 @@ public class Main {
                     while (billInfo.hasNextLine()) {
                         line = billInfo.nextLine();
                         String[] arrCheck = line.split(",");
-                        if (monthCheck = true && arrCheck[0].equals(Month)) {
+                        if (arrCheck[1].equals(No) && arrCheck[0].equals(Month)) {
                             System.out.println("There is an existing record for this month. Please Check Again! ");
                             monthCheck = false;
                             break;
