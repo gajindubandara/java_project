@@ -23,7 +23,7 @@ Steps -
     2) Press “Enter”
     3) Type the contact number (This should be in numeric format)
     4) Press “Enter”
-    5) Type the address
+    5) Type the address ( NOTE - Don't use commas for the address )
     6) Press “Enter”
     7) Assign a new account number for the user (must be a unique one)
     8) Press “Enter”
@@ -56,7 +56,7 @@ Steps-
     4)Press “Enter”
     5)Type the contact number (This should be in numeric format)
     6)Press “Enter”
-    7)Type the address
+    7)Type the address ( NOTE - Don't use commas for the address )
     8)Press “Enter”
 Customer information updated successfully!
 
@@ -78,7 +78,7 @@ Use this option to add bill information for a new month to an existing customer
 Steps-
     1)Type the account number (Must be an existing account number)
     2)Press “Enter
-    3)Type the Month
+    3)Type the Month and year
         Month should be in the below format
             * January
             * February
@@ -92,6 +92,11 @@ Steps-
             * October
             * November
             * December
+         Take a look at the below examples,
+            January/2022
+            May/2021
+            June/2022
+         Enter the month & year as in the above examples
     4)Press “Enter”
     5)Types the burned units for the month (This should be in numeric format)
     6)Press “Enter”
@@ -105,7 +110,7 @@ Use this option to print the bill of a customer for an existing monthly record
 Steps-
     1)Type the account number (Must be an existing account number)
     2)Press “Enter
-    3)Type the Month (Month should be in the above-described format on option 6)
+    3)Type the Month and year (Month & year should be in the above-described format on option 6)
     4)Press “Enter”
 The bill will be displayed!
 
@@ -117,7 +122,7 @@ Use this option to update the bill of a customer for an existing monthly record
 Steps-
     1)Type the account number (Must be an existing account number)
     2)Press “Enter
-    3)Type the Month (Month should be in the above-described format on option 6 )
+    3)Type the Month and year (Month & year should be in the above-described format on option 6 )
     4)Press “Enter”
     5)Types the new burned units for the month (This should be in numeric format)
     6)Press “Enter”
@@ -131,7 +136,7 @@ Use this option to delete a bill of a customer for an existing monthly record
 Steps-
     1)Type the account number (Must be an existing account number)
     2)Press “Enter
-    3)Type the Month (Month should be in the above-described format on option 6 )
+    3)Type the Month and year (Month & year should be in the above-described format on option 6 )
     4)Press “Enter”
 Record Removed Successfully!
 
