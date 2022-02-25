@@ -76,7 +76,7 @@ public class Main {
                         help(helpInfoFile);
                         break;
                     default:
-                        System.out.println("Invalid option");
+                        System.out.println("Error: Invalid option");
                 }
                 System.out.println(" ");
                 System.out.println("*************************************");
@@ -88,7 +88,7 @@ public class Main {
 
             }
         } else {
-            System.out.println("Invalid Username or Password");
+            System.out.println("Error: Invalid Username or Password");
         }
     }
 
@@ -132,7 +132,7 @@ public class Main {
                     Pno = Long.parseLong(stringPno);
                     intCheckPno = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Contact Number Must be a Numeric Value");
+                    System.out.println("Error: Contact number is not in numeric format");
                 }
             }
             System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
@@ -147,7 +147,7 @@ public class Main {
                     No = Integer.parseInt(stringNo);
                     intCheckNo = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Account Number Must be a Numeric Value");
+                    System.out.println("Error: Account number is not in numeric format");
                 }
             }
 
@@ -179,12 +179,12 @@ public class Main {
                         return false;
                     }
                 } else {
-                    System.out.println("There is an existing account for this account number.Please check again!");
+                    System.out.println("Error: There is an existing account for this account number.Please check again!");
                 }
                 checkAcc.close();
             }
         } catch (InputMismatchException | FileNotFoundException e) {
-            System.out.println("Invalid data entry");
+            System.out.println("Error: Invalid data entry");
             return false;
         }
         return true;
@@ -203,7 +203,7 @@ public class Main {
                 System.out.println("Account Number - " + arr[0]);
                 System.out.println("Account Owners Name - " + arr[1]);
                 System.out.println("Address - " + arr[2]);
-                System.out.println("Contact Number " + arr[3]);
+                System.out.println("Contact Number - " + arr[3]);
                 System.out.println(" ");
             }
             readFile.close();
@@ -243,7 +243,7 @@ public class Main {
                 }
             }
             if (user == false) {
-                System.out.println("Invalid User Account Number");
+                System.out.println("Error: Invalid User Account Number");
             }
             readProfiles.close();
 
@@ -279,7 +279,7 @@ public class Main {
             }
 
             if (account == false) {
-                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
+                System.out.println("Error: The Customer Account Number is Incorrect Please Check Again!");
             } else {
                 System.out.println("Enter Name: (Firstname & Lastname)");
                 Name = userInfo.nextLine();
@@ -291,7 +291,7 @@ public class Main {
                         Pno = Long.parseLong(stringPno);
                         intCheckPno = true;
                     } catch (NumberFormatException e) {
-                        System.out.println("Contact Number Must be a Numeric Value");
+                        System.out.println("Error: Contact number is not in numeric format");
                     }
                 }
                 System.out.println("Enter Address: ( NOTE - Don't use commas for the address ) ");
@@ -343,7 +343,7 @@ public class Main {
             }
 
             if (account == false) {
-                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
+                System.out.println("Error: The Customer Account Number is Incorrect Please Check Again!");
             } else {
                 try {
                     FileWriter writer = new FileWriter(profileList);
@@ -391,7 +391,7 @@ public class Main {
             }
             user.close();
             if (accCheck == false) {
-                System.out.println("The Customer Account Number is Incorrect Please Check Again!");
+                System.out.println("Error: The Customer Account Number is Incorrect Please Check Again!");
             } else {
                 File checkData = new File(billInfoFile);
                 System.out.println("Enter The Month & Year  (ex- January/2022)");
@@ -404,7 +404,7 @@ public class Main {
                         line = billInfo.nextLine();
                         String[] arrCheck = line.split(",");
                         if (arrCheck[0].equals(Month) && arrCheck[1].equals(No)) {
-                            System.out.println("There is an existing record for this month. Please Check Again! ");
+                            System.out.println("Error: There is an existing record for this month. Please Check Again! ");
                             monthCheck = false;
                             break;
 
@@ -427,7 +427,7 @@ public class Main {
                             Units = Integer.parseInt(stringUnits);
                             intCheck = true;
                         } catch (NumberFormatException e) {
-                            System.out.println("Enter A Correct Numeric Value");
+                            System.out.println("Error: Enter a correct numeric value");
                         }
                     }
                     try {
@@ -524,7 +524,7 @@ public class Main {
 
                 }
                 if (noData == false) {
-                    System.out.println("Haven't created the bill for " + " " + Month);
+                    System.out.println("Error: Haven't created the bill for " + " " + Month);
                     System.out.println("First create the bill!");
 
                 }
@@ -535,7 +535,7 @@ public class Main {
                 e.printStackTrace();
             }
         } else if (accCheck == false) {
-            System.out.println("Invalid account number! ");
+            System.out.println("Error: Invalid account number! ");
         }
     }
 
@@ -600,7 +600,7 @@ public class Main {
 
                 }
                 if (record == false) {
-                    System.out.println("No bill record for" + " " + Month);
+                    System.out.println("Error: No bill record for" + " " + Month);
                     System.out.println("Please check again!");
 
                 } else if (record == true) {
@@ -618,7 +618,7 @@ public class Main {
                             intCheck = true;
                         } catch (NumberFormatException e) {
 
-                            System.out.println("Enter A Correct Numeric Value");
+                            System.out.println("Error: Enter a correct numeric value");
 
                         }
 
@@ -651,7 +651,7 @@ public class Main {
                 e.printStackTrace();
             }
         } else if (accCheck == false) {
-            System.out.println("Invalid account number! ");
+            System.out.println("Error: Invalid account number! ");
         }
     }
 
@@ -709,7 +709,7 @@ public class Main {
                     }
                 }
                 if (record == false) {
-                    System.out.println("No bill record for" + " " + Month);
+                    System.out.println("Error: No bill record for" + " " + Month);
                     System.out.println("Please check again!");
                 } else if (record == true) {
                     try {
@@ -731,7 +731,7 @@ public class Main {
                 e.printStackTrace();
             }
         } else if (accCheck == false) {
-            System.out.println("Invalid account number! ");
+            System.out.println("Error: Invalid account number! ");
         }
     }
 
