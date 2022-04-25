@@ -506,7 +506,7 @@ public class Main {
                     line = sc.nextLine();
                     String[] arr = line.split(",");
 
-                    if (arr[0].equals(Month)) {
+                    if (arr[0].equals(Month) && arr[1].equals(AcNo)) {
                         System.out.println(" ");
                         System.out.println("----------------------------------------------------------------------");
                         System.out.println(" ");
