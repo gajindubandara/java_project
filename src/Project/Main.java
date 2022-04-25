@@ -14,10 +14,10 @@ import java.time.format.DateTimeFormatter;
 public class Main {
     public static void main(String[] args) {
         //File directories
-        String profileList = "/home/gaji/projects/Degree/java-project/src/Project/profiles.txt";
-        String billInfoFile = "/home/gaji/projects/Degree/java-project/src/Project/bill_info.txt";
-        String helpInfoFile = "/home/gaji/projects/Degree/java-project/src/Project/help.txt";
-        String loginFile = "/home/gaji/projects/Degree/java-project/src/Project/login.txt";
+        String profileList = "/home/gaji/projects/Degree/java_project/src/Project/profiles.txt";
+        String billInfoFile = "/home/gaji/projects/Degree/java_project/src/Project/bill_info.txt";
+        String helpInfoFile = "/home/gaji/projects/Degree/java_project/src/Project/help.txt";
+        String loginFile = "/home/gaji/projects/Degree/java_project/src/Project/login.txt";
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the Username:");
